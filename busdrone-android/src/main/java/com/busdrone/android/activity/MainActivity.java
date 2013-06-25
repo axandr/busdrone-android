@@ -43,7 +43,7 @@ import com.busdrone.android.model.Vehicle;
 import com.busdrone.android.ui.VehicleMarkerRenderer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -53,7 +53,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.squareup.otto.Subscribe;
 
@@ -78,7 +77,7 @@ public class MainActivity extends BusdroneActivity {
 
         mMarkerRenderer = new VehicleMarkerRenderer(this);
 
-        mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 
         final SharedPreferences prefs = BusdroneApp.get().getPreferences();
         if (prefs.contains(BusdroneApp.PREF_MAP_LAT) && prefs.contains(BusdroneApp.PREF_MAP_LNG) && prefs.contains(BusdroneApp.PREF_MAP_ZOOM)) {

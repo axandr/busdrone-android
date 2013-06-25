@@ -16,9 +16,10 @@
 
 package com.busdrone.android.activity;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import com.busdrone.android.BusdroneApp;
 import com.busdrone.android.service.BusdroneService;
@@ -27,7 +28,7 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-public abstract class BusdroneActivity extends Activity implements DummyServiceConnection.Listener {
+public abstract class BusdroneActivity extends FragmentActivity implements DummyServiceConnection.Listener {
     private static final String TAG = "Busdrone-BusdroneActivity";
 
     private DummyServiceConnection mServiceConnection;
@@ -64,17 +65,17 @@ public abstract class BusdroneActivity extends Activity implements DummyServiceC
         }
     }
 
+   /* //TODO
     @Override
     @SuppressWarnings("deprecation")
     public Object onRetainNonConfigurationInstance() {
         return mServiceConnection;
     }
-
+*/
     @Override
     protected void onStop() {
         super.onStop();
-
-        if (mServiceConnection != null && (!isChangingConfigurations())) {
+        if (mServiceConnection != null && (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB || !isChangingConfigurations())) {
             BusdroneApp.get().unbindService(mServiceConnection);
             mServiceConnection = null;
         }

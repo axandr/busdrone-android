@@ -24,7 +24,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.TextPaint;
-import android.util.LruCache;
+import android.support.v4.util.LruCache;
 import com.busdrone.android.R;
 import com.busdrone.android.Utils;
 

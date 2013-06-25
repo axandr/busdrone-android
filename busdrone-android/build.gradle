@@ -35,39 +35,41 @@ def askPassword() {
   return 'security -q find-generic-password -g -l busdrone-release'.execute().err.text.split('"')[1]
 }
 
-afterEvaluate {
+/*afterEvaluate {
     validateReleaseSigning.doFirst {
         password = askPassword()
         signingConfig.storePassword = password
         signingConfig.keyPassword = password
     }
-}
+}*/
 
 android {
     compileSdkVersion 17
     buildToolsVersion "17.0.0"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 10
         targetSdkVersion 17
     }
 
     signingConfigs {
+        /*
         release {
             storeFile file('../release.keystore')
             keyAlias 'busdrone-release'
             storePassword ''
             keyPassword ''
         }
-
+        */
         debug {
             storeFile file('../debug.keystore')
         }
     }
-
+/*
     buildTypes {
         release {
             signingConfig signingConfigs.release
         }
     }
+    */
 }
